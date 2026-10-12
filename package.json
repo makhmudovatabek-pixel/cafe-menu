@@ -1,0 +1,12 @@
+{
+  "name": "abdulla-ata-cafe-menu",
+  "version": "1.0.0",
+  "private": true,
+  "description": "АБДУЛЛА АТА кафесінің екі тілді мәзір сайты",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

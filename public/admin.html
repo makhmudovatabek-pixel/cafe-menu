@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#f8f5ef">
+  <title>Панель администратора — АБДУЛЛА АТА</title>
+  <link rel="stylesheet" href="/admin.css">
+  <script src="/admin.js" defer></script>
+</head>
+<body class="admin-body">
+  <header class="admin-header">
+    <a class="admin-brand" href="/" aria-label="Сайт кафе АБДУЛЛА АТА">
+      <span class="admin-brand-mark">АА</span>
+      <span><strong>АБДУЛЛА АТА</strong><small data-i18n="panelLabel">Панель администратора</small></span>
+    </a>
+    <div class="admin-header-actions">
+      <div class="session-controls" id="sessionControls" hidden>
+        <span class="session-label" data-i18n="sessionLabel">Сеанс завершится через:</span>
+        <strong id="sessionTimer">30:00</strong>
+        <button type="button" class="button button-quiet" id="logoutButton" data-i18n="logout">Выйти</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <section class="login-card" id="loginView">
+      <span class="eyebrow" data-i18n="adminAccess">ДЛЯ АДМИНИСТРАТОРА</span>
+      <h1 data-i18n="loginTitle">Вход в панель администратора</h1>
+      <p data-i18n="loginDescription">Войдите, чтобы управлять меню.</p>
+      <form id="loginForm">
+        <label for="username" data-i18n="usernameLabel">Логин</label>
+        <input id="username" name="username" autocomplete="username" value="admin" required>
+        <label for="password" data-i18n="passwordLabel">Пароль</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <p class="form-error" id="loginError" role="alert" hidden></p>
+        <button class="button button-primary button-wide" type="submit" data-i18n="loginButton">Войти</button>
+      </form>
+      <a class="back-link" href="/" data-i18n="backToSite">← Вернуться на сайт</a>
+    </section>
+
+    <section class="admin-dashboard" id="adminView" hidden>
+      <div class="dashboard-intro">
+        <div>
+          <span class="eyebrow" data-i18n="workspaceLabel">УПРАВЛЕНИЕ МЕНЮ</span>
+          <h1 data-i18n="welcomeTitle">Добро пожаловать</h1>
+          <p data-i18n="welcomeDescription">Здесь можно управлять блюдами, категориями и фотографиями слайдшоу.</p>
+        </div>
+        <a class="button button-quiet" href="/" target="_blank" rel="noreferrer" data-i18n="openSite">Открыть сайт ↗</a>
+      </div>
+
+      <nav class="admin-tabs" role="tablist" aria-label="Разделы панели администратора">
+        <button type="button" class="admin-tab is-active" data-tab="dishes" role="tab" aria-selected="true" data-i18n="tabDishes">Блюда</button>
+        <button type="button" class="admin-tab" data-tab="categories" role="tab" aria-selected="false" data-i18n="tabCategories">Категории</button>
+        <button type="button" class="admin-tab" data-tab="slides" role="tab" aria-selected="false" data-i18n="tabSlides">Слайдшоу</button>
+      </nav>
+
+      <section class="tab-panel" id="dishesPanel" role="tabpanel">
+        <div class="panel-heading">
+          <div><h2 data-i18n="dishesTitle">Блюда в меню</h2><p data-i18n="dishesHint">Для каждого блюда нужны название и описание на обоих языках.</p></div>
+          <button type="button" class="button button-primary" id="addDishButton" data-i18n="addDish">+ Добавить блюдо</button>
+        </div>
+        <div class="dish-admin-list" id="dishList"></div>
+        <p class="empty-admin" id="noDishes" hidden data-i18n="noDishes">Пока нет блюд.</p>
+      </section>
+
+      <section class="tab-panel" id="categoriesPanel" role="tabpanel" hidden>
+        <div class="panel-heading">
+          <div><h2 data-i18n="categoriesTitle">Категории блюд</h2><p data-i18n="categoriesHint">При удалении категории её блюда перейдут в другую категорию.</p></div>
+          <button type="button" class="button button-primary" id="addCategoryButton" data-i18n="addCategory">+ Добавить категорию</button>
+        </div>
+        <div class="category-admin-list" id="categoryList"></div>
+      </section>
+
+      <section class="tab-panel" id="slidesPanel" role="tabpanel" hidden>
+        <div class="panel-heading">
+          <div><h2 data-i18n="slidesTitle">Главное слайдшоу</h2><p data-i18n="slidesHint">Загрузите здесь две фотографии, которые показываются на сайте.</p></div>
+        </div>
+        <div class="slide-admin-list" id="slideList"></div>
+      </section>
+      <p class="toast" id="toast" role="status" hidden></p>
+    </section>
+  </main>
+
+  <dialog class="edit-dialog" id="dishDialog">
+    <form id="dishForm" method="dialog">
+      <div class="dialog-heading"><div><span class="eyebrow" data-i18n="dishEditor">МЕНЮ</span><h2 id="dishDialogTitle">Добавить блюдо</h2></div><button type="button" class="icon-close" data-close="dishDialog" aria-label="Закрыть">×</button></div>
+      <input type="hidden" id="dishId">
+      <div class="form-grid">
+        <label><span data-i18n="nameKk">Название — на казахском</span><input id="dishNameKk" required maxlength="90"></label>
+        <label><span data-i18n="nameRu">Название — на русском</span><input id="dishNameRu" required maxlength="90"></label>
+        <label class="field-wide"><span data-i18n="descriptionKk">Описание — казахский</span><textarea id="dishDescriptionKk" required maxlength="240" rows="2"></textarea></label>
+        <label class="field-wide"><span data-i18n="descriptionRu">Описание — русский</span><textarea id="dishDescriptionRu" required maxlength="240" rows="2"></textarea></label>
+        <label><span data-i18n="priceKzt">Цена (₸)</span><input id="dishPrice" type="number" min="0" step="1" required></label>
+        <label><span data-i18n="categoryLabel">Категория</span><select id="dishCategory" required></select></label>
+      </div>
+      <label class="new-dish-toggle"><input id="dishIsNew" type="checkbox"><span data-i18n="newDishToggle">Отметить как новое блюдо</span></label>
+      <div class="image-editor">
+        <img id="dishImagePreview" alt="" hidden>
+        <label class="upload-control"><span data-i18n="dishPhoto">Фото блюда</span><input id="dishImageFile" type="file" accept="image/png,image/jpeg,image/webp" required></label>
+        <small data-i18n="imageLimit">PNG, JPG или WebP · до 5 МБ</small>
+      </div>
+      <p class="form-error" id="dishError" role="alert" hidden></p>
+      <div class="dialog-actions"><button type="button" class="button button-quiet" data-close="dishDialog" data-i18n="cancel">Отмена</button><button type="submit" class="button button-primary" data-i18n="save">Сохранить</button></div>
+    </form>
+  </dialog>
+
+  <dialog class="edit-dialog compact-dialog" id="categoryDialog">
+    <form id="categoryForm" method="dialog">
+      <div class="dialog-heading"><div><span class="eyebrow" data-i18n="categoryEditor">КАТЕГОРИИ</span><h2 id="categoryDialogTitle">Добавить категорию</h2></div><button type="button" class="icon-close" data-close="categoryDialog" aria-label="Закрыть">×</button></div>
+      <input type="hidden" id="categoryId">
+      <label><span data-i18n="nameKk">Название — на казахском</span><input id="categoryNameKk" required maxlength="70"></label>
+      <label><span data-i18n="nameRu">Название — на русском</span><input id="categoryNameRu" required maxlength="70"></label>
+      <p class="form-error" id="categoryError" role="alert" hidden></p>
+      <div class="dialog-actions"><button type="button" class="button button-quiet" data-close="categoryDialog" data-i18n="cancel">Отмена</button><button type="submit" class="button button-primary" data-i18n="save">Сохранить</button></div>
+    </form>
+  </dialog>
+</body>
+</html>

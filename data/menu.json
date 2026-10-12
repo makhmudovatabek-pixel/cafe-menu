@@ -1,0 +1,97 @@
+{
+  "categories": [
+    {
+      "id": "hot-dishes",
+      "names": {
+        "kk": "Ыстық тағамдар",
+        "ru": "Горячие блюда"
+      }
+    },
+    {
+      "id": "dough-dishes",
+      "names": {
+        "kk": "Қамыр тағамдары",
+        "ru": "Мучные блюда"
+      }
+    }
+  ],
+  "dishes": [
+    {
+      "id": "beshbarmak",
+      "categoryId": "hot-dishes",
+      "name": {
+        "kk": "Бешбармақ",
+        "ru": "Бешбармак"
+      },
+      "description": {
+        "kk": "Жұмсақ ет, қолдан жайылған кеспе және пияз тұздығы.",
+        "ru": "Нежное мясо, домашняя лапша и луковый соус."
+      },
+      "price": 4790,
+      "image": "/images/beshbarmak.png",
+      "isNew": true,
+      "isAvailable": true
+    },
+    {
+      "id": "plov",
+      "categoryId": "hot-dishes",
+      "name": {
+        "kk": "Қазақша палау",
+        "ru": "Плов по-казахски"
+      },
+      "description": {
+        "kk": "Хош иісті күріш, ет, сәбіз және дәмдеуіштер.",
+        "ru": "Ароматный рис, мясо, морковь и душистые специи."
+      },
+      "price": 3290,
+      "image": "/images/plov.png",
+      "isAvailable": true
+    },
+    {
+      "id": "lagman",
+      "categoryId": "dough-dishes",
+      "name": {
+        "kk": "Лағман",
+        "ru": "Лагман"
+      },
+      "description": {
+        "kk": "Қол кеспе, ет пен көкөністен дайындалған қою тағам.",
+        "ru": "Сытное блюдо с домашней лапшой, мясом и овощами."
+      },
+      "price": 2990,
+      "image": "/images/lagman.png",
+      "isAvailable": true
+    },
+    {
+      "id": "manti",
+      "categoryId": "dough-dishes",
+      "name": {
+        "kk": "Манты",
+        "ru": "Манты"
+      },
+      "description": {
+        "kk": "Бу қазанында піскен жұқа қамырлы, шырынды манты.",
+        "ru": "Сочные манты в тонком тесте, приготовленные на пару."
+      },
+      "price": 3490,
+      "image": "/images/manti.png",
+      "isAvailable": true
+    }
+  ],
+  "slides": [
+    {
+      "image": "/images/slide-dastarkhan.png",
+      "alt": {
+        "kk": "Қазақ дастарқаны",
+        "ru": "Казахский дастархан"
+      }
+    },
+    {
+      "image": "/images/slide-tea.png",
+      "alt": {
+        "kk": "Манты мен шай",
+        "ru": "Манты и чай"
+      }
+    }
+  ]
+}

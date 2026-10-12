@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#f8f5ef"/>
+  <circle cx="256" cy="256" r="194" fill="#fffdfa" stroke="#a65435" stroke-width="10"/>
+  <text x="256" y="326" text-anchor="middle" fill="#78402d" font-family="Georgia, 'Times New Roman', serif" font-size="190" letter-spacing="-18">АА</text>
+</svg>
